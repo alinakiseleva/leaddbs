@@ -22,4 +22,3 @@ d.reco.electrode(obj.side).plan.target=obj.target;
 
 d.reco.electrode(obj.side).micro.relateMicro=obj.relateMicro;
 save(obj.options.subj.recon.recon, '-struct', 'd');
-

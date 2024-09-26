@@ -315,6 +315,10 @@ if ~strcmp(options.patientname,'No Patient Selected') && ~isempty(options.patien
             ea_manualreconstruction(mcfig,options.subj.subjId,options);
         end
     end
+    
+    if options.renameelectrodes.do
+        rename_electrode_labels(options); 
+    end 
 
     if options.ecog.extractsurface.do
        switch options.ecog.extractsurface.method

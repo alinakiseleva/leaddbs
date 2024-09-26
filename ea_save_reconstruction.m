@@ -27,7 +27,11 @@ if options.native
             clear x y
         end
     end
+
     save(outFilePath, 'reco');
+
+    %options = save_coordinates(reco, options); 
+    %coordinates_to_nifti(options);
 
     if isfield(options,'hybridsave')
         ea_dispt('Warping fiducials to template space');
@@ -37,17 +41,29 @@ if options.native
             ea_reconstruction2acpc(options);
             ea_dispt('');
         end
+
         load(outFilePath, 'reco');
+        
         [reco,corrected]=ea_checkswap_lr(reco,options); % PaCER support, right could be left and vice versa.
 
         save(outFilePath, 'reco');
+
+        options = save_coordinates(reco, options); 
+        
+        coordinates_to_nifti(options); 
+
         ea_dispt('');
+
     end
+
 else
     reco.mni.coords_mm=coords_mm;
     reco.mni.trajectory=trajectory;
     reco.mni.markers=markers;
+
     save(outFilePath, 'reco');
+    options = save_coordinates(reco, options); 
+    coordinates_to_nifti(options);
 
     if isfield(options,'hybridsave')
         ea_dispt('Warping fiducials to native space');
@@ -61,6 +77,8 @@ else
         [reco,corrected]=ea_checkswap_lr(reco,options); % PaCER support, right could be left and vice versa.
 
         save(outFilePath, 'reco');
+        options = save_coordinates(reco, options); 
+        coordinates_to_nifti(options);
         ea_dispt('');
 
         if corrected

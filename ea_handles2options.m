@@ -373,6 +373,19 @@ catch
 end
 
 
+try
+    options.renameelectrodes.do = handles.renameelectrodes.Value;
+catch
+    options.renameelectrodes.do = 0;
+end
+
+try
+    options.renameelectrodes.image = string(handles.renameelectrodesimage.String(handles.renameelectrodesimage.Value));
+catch
+    options.renameelectrodes.image = 0;
+end
+
+
 function sides = ea_assignsides(handles)
 elnum = sum(cellfun(@(f) ~isempty(f), regexp(fieldnames(handles),'^side\d+$','match')));
 sideLabel = "side" + (1:elnum)';
