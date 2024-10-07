@@ -3,7 +3,7 @@ function options = save_coordinates(reco, options)
     electrode_number = [];
     excisting_modality = fieldnames(reco); 
 
-    for i = [1:length(reco.props)]
+    for i = 1:length(reco.props)
         electrode_number = [electrode_number; repmat(i, length(reco.(excisting_modality{2}).coords_mm{i}), 1)];
     end
     
